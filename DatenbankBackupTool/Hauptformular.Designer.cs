@@ -42,6 +42,7 @@
             this.PortNum = new System.Windows.Forms.NumericUpDown();
             this.DatenbanksystemLabel = new System.Windows.Forms.Label();
             this.DumpersComboBox = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.PortNum)).BeginInit();
             this.SuspendLayout();
             // 
@@ -173,11 +174,23 @@
             this.DumpersComboBox.Size = new System.Drawing.Size(177, 21);
             this.DumpersComboBox.TabIndex = 17;
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.label1.Location = new System.Drawing.Point(207, 263);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(136, 9);
+            this.label1.TabIndex = 18;
+            this.label1.Text = "(C) 2015 tadora - business & it-solutions";
+            // 
             // Hauptformular
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(354, 277);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.DumpersComboBox);
             this.Controls.Add(this.DatenbanksystemLabel);
             this.Controls.Add(this.PortNum);
@@ -194,7 +207,8 @@
             this.Controls.Add(this.StarteSicherungButton);
             this.Name = "Hauptformular";
             this.ShowIcon = false;
-            this.Text = "Datenbankbackup Tool";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Datenbank Backup";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.OnFormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.PortNum)).EndInit();
             this.ResumeLayout(false);
@@ -218,6 +232,7 @@
         private System.Windows.Forms.NumericUpDown PortNum;
         private System.Windows.Forms.Label DatenbanksystemLabel;
         private System.Windows.Forms.ComboBox DumpersComboBox;
+        private System.Windows.Forms.Label label1;
     }
 }
 
