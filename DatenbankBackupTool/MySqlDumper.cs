@@ -186,7 +186,6 @@ namespace DatenbankBackupTool
                     return import(fileStream);
                 }
             }
-            return true;
         }
 
         public bool import(System.IO.Stream stream)

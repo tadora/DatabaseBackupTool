@@ -177,7 +177,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(354, 252);
+            this.ClientSize = new System.Drawing.Size(354, 277);
             this.Controls.Add(this.DumpersComboBox);
             this.Controls.Add(this.DatenbanksystemLabel);
             this.Controls.Add(this.PortNum);
@@ -193,6 +193,7 @@
             this.Controls.Add(this.AdresseTextBox);
             this.Controls.Add(this.StarteSicherungButton);
             this.Name = "Hauptformular";
+            this.ShowIcon = false;
             this.Text = "Datenbankbackup Tool";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.OnFormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.PortNum)).EndInit();
