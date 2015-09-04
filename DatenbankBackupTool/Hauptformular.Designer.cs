@@ -181,9 +181,10 @@
             this.label1.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
             this.label1.Location = new System.Drawing.Point(207, 263);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(136, 9);
+            this.label1.Size = new System.Drawing.Size(122, 9);
             this.label1.TabIndex = 18;
-            this.label1.Text = "(C) 2015 tadora - business & it-solutions";
+            this.label1.Text = "2015 tadora - business & it-solutions";
+            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // Hauptformular
             // 

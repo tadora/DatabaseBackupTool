@@ -74,6 +74,7 @@ namespace DatenbankBackupTool
                 try
                 {
                     dumper.export(filename);
+                    MessageBox.Show("Backup wurde erstellt");
                 }
                 catch (Exception ex)
                 {
@@ -111,8 +112,14 @@ namespace DatenbankBackupTool
             {
                 return null;
             }
-
+            
             return dialogToUse.FileName;
+            
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
