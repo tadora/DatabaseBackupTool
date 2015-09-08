@@ -3,6 +3,8 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DatenbankBackupTool", "DatenbankBackupTool\DatenbankBackupTool.csproj", "{DC3EACEF-0BC6-42D0-9D18-40BF0B298FCB}"
 EndProject
+Project("{7CF6DF6D-3B04-46F8-A40B-537D21BCA0B4}") = "Documentations-Generator", "Documentations-Generator\Documentations-Generator.shfbproj", "{28F46C5B-4904-45FD-A279-EA56DB029B4D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -13,6 +15,10 @@ Global
 		{DC3EACEF-0BC6-42D0-9D18-40BF0B298FCB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DC3EACEF-0BC6-42D0-9D18-40BF0B298FCB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DC3EACEF-0BC6-42D0-9D18-40BF0B298FCB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{28F46C5B-4904-45FD-A279-EA56DB029B4D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{28F46C5B-4904-45FD-A279-EA56DB029B4D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{28F46C5B-4904-45FD-A279-EA56DB029B4D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{28F46C5B-4904-45FD-A279-EA56DB029B4D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
