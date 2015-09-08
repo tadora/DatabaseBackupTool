@@ -27,7 +27,7 @@ namespace DatenbankBackupTool
             DumpersComboBox.DisplayMember = "DisplayName";
             DumpersComboBox.ValueMember = "DisplayName";
             DumpersComboBox.DataSource = dumpers;
-
+            
             AdresseTextBox.Text = Properties.Settings.Default.Server;
             BenutzernameTextBox.Text = Properties.Settings.Default.Benutzer;
             PasswortTextBox.Text = Properties.Settings.Default.Passwort;
