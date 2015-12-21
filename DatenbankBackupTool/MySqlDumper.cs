@@ -211,7 +211,10 @@ namespace DatenbankBackupTool
                                         {
                                             //Entscheide was zu tun ist anhand des MySql-Datentypennamen
                                             switch (reader.GetDataTypeName(i))
-                                            {
+                                            {   
+                                                case "SMALLINT":
+                                                    rowValues.Add(reader.GetInt16(i).ToString());
+                                                    break;
                                                 //INT und TINYINT werden als 32 bit Integer ausgelesen.
                                                 case "INT":
                                                 case "TINYINT":
@@ -248,8 +251,7 @@ namespace DatenbankBackupTool
                                                 //auf eine MySQL-Datentyp getroffen wird, der noch nicht bekannt ist.
                                                 default:
                                                     String datatypeName = reader.GetDataTypeName(i);
-                                                    rowValues.Add(reader.GetValue(i).ToString());
-                                                    break;
+                                                    throw new ArgumentOutOfRangeException("Mysql Datentyp '" + datatypeName + "' ist diesem Tool nicht bekannt");
                                             }
                                         }
                                     }
