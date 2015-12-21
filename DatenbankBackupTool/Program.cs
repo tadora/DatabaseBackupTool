@@ -7,6 +7,9 @@ using System.Windows.Forms;
 
 namespace DatenbankBackupTool
 {
+    /// <summary>
+    /// Die Startklasse für das Programm.
+    /// </summary>
     static class Program
     {
         /// <summary>

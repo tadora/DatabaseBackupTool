@@ -16,31 +16,31 @@ namespace DatenbankBackupTool
         /// <summary>
         /// Legt die Netzwerkadresse des zu verwendenden Datenbankservers fest (ohne Portangabe).
         /// </summary>
-        /// <param name="address"></param>
+        /// <param name="address">Die festzulegende Serveradresse</param>
         void setAddress(string address);
 
         /// <summary>
         /// Legt den für den Login zu verwendende Benutzernamen fest.
         /// </summary>
-        /// <param name="username"></param>
+        /// <param name="username">Der festzulegende Benutzername</param>
         void setUsername(string username);
 
         /// <summary>
         /// Legt den Port für den Datenbankserver fest.
         /// </summary>
-        /// <param name="port"></param>
+        /// <param name="port">Der festzulegende Port</param>
         void setPort(uint port);
 
         /// <summary>
         /// Legt das für den Login zu verwendende Passwort fest.
         /// </summary>
-        /// <param name="password"></param>
+        /// <param name="password">Das festzulegende Passwort</param>
         void setPassword(string password);
 
         /// <summary>
         /// Legt fest, mit welcher Datenbank auf dem Server gearbeitet werden soll.
         /// </summary>
-        /// <param name="database"></param>
+        /// <param name="database">Der festzulegende Datenbankname</param>
         void setDatabase(string database);
 
         /// <summary>

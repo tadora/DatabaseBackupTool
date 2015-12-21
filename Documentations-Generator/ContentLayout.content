@@ -1,9 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Topics>
-  <Topic id="57179302-f73f-4a17-82ac-5c1f02e2c1cd" visible="True" isDefault="true" isSelected="true" title="Welcome to the [TODO: Add project name]">
+  <Topic id="57179302-f73f-4a17-82ac-5c1f02e2c1cd" visible="True" isDefault="true" isExpanded="true" isSelected="true" title="Dokumentation zum DatenbankBackupTool" tocTitle="Inhaltsverzeichnis">
     <HelpKeywords>
       <HelpKeyword index="K" term="Welcome" />
     </HelpKeywords>
+    <Topic id="6dc252e3-65a6-4511-9c8a-14eb745da2ed" visible="True" isSelected="true" />
   </Topic>
   <Topic id="3b0fab43-42e7-4f1e-a8b2-9c020ce487e9" visible="True" isExpanded="true" title="Version History">
     <HelpKeywords>

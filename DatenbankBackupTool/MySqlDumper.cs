@@ -24,69 +24,44 @@ namespace DatenbankBackupTool
             connectionStringBuilder = new MySqlConnectionStringBuilder();
         }
 
-        /// <summary>
-        /// Legt die Netzwerkadresse des zu verwendenden Datenbankservers fest (ohne Portangabe).
-        /// </summary>
-        /// <param name="address"></param>
+        /// <inheritdoc/>
         public void setAddress(string address)
         {
             connectionStringBuilder.Server = address;
         }
 
-        /// <summary>
-        /// Legt den für den Login zu verwendende Benutzernamen fest.
-        /// </summary>
-        /// <param name="username"></param>
+        /// <inheritdoc/>
         public void setUsername(string username)
         {
             connectionStringBuilder.UserID = username;
         }
 
-        /// <summary>
-        /// Legt den Port für den Datenbankserver fest.
-        /// </summary>
-        /// <param name="port"></param>
+        /// <inheritdoc/>
         public void setPort(uint port)
         {
             connectionStringBuilder.Port = port;
         }
 
-        /// <summary>
-        /// Legt das für den Login zu verwendende Passwort fest.
-        /// </summary>
-        /// <param name="password"></param>
+        /// <inheritdoc/>
         public void setPassword(string password)
         {
             connectionStringBuilder.Password = password;
         }
 
-        /// <summary>
-        /// Legt fest, mit welcher Datenbank auf dem Server gearbeitet werden soll.
-        /// </summary>
-        /// <param name="database"></param>
+        /// <inheritdoc/>
         public void setDatabase(string database)
         {
             connectionStringBuilder.Database = database;
         }
 
-        /// <summary>
-        /// Schreibt den Inhalt der Datenbank in die angegebenen Datei als SQL-Dump.
-        /// Wenn die Datei nicht existiert wird sie angelegt.
-        /// Existiert sie wird sie überschrieben!
-        /// </summary>
-        /// <param name="filename">Kompletter Pfad zur Datei</param>
-        /// <returns>true bei Erfolg, fals beim Auftritt eines Fehlers</returns>
+        /// <inheritdoc/>
         public bool export(string filename)
         {
             Stream fileStream = File.OpenWrite(filename);
             return export(fileStream);
         }
 
-        /// <summary>
-        /// Schreibt den Inhalt der Datenbank in den angegebenen Stream als SQL-Dump.
-        /// </summary>
-        /// <param name="stream">Der Stream, in den die Daten geschrieben werden sollen</param>
-        /// <returns>true bei Erfolg, fals beim Auftritt eines Fehlers</returns>
+        /// <inheritdoc/>
         public bool export(Stream stream)
         {
             //Erstelle eine neue MySqlVerbindung
@@ -109,7 +84,7 @@ namespace DatenbankBackupTool
                     }
                     reader.Close(); //Datenleser nach getaner Arbeit schließen
                     List<String> Constraints = new List<String>(); //Eine Liste der Abhängigkeiten zwischen den Tabellen
-                    /**
+                    /*
                      * Dieser Reguläre Ausdruck dient dazu die Constraints aus den CREATE TABLE Anweisungen herauszufiltern.
                      * Die Constraints müssen nämlich definiert werden, nachdem alle Tabellen angelegt wurden, um ein sicheres Dumpen
                      * und späteres Wiederherstellen zu gewähren.
@@ -124,25 +99,25 @@ namespace DatenbankBackupTool
                      * 8   CONSTRAINT `ARTIKEL_ZU_SHOPKATEGORIE_ibfk_1` FOREIGN KEY (`ARTIKEL_ID`) REFERENCES `ARTIKEL` (`REC_ID`) ON DELETE CASCADE
                      * 9 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
                      * 
-                     * Merke:   Die doppelten Backslashes müssen als einfacher gelesen werden.
+                     * Merke:   Die doppelten Backslashes müssen als einzelner gelesen werden.
                      *          Da der String selber Escaped wird müssen Backslashes, die zum escapen
                      *          verwendet für den RegEx verwendet werden sollen, selber auch escaped werden.
                      * 
                      * 1. ",\\n\\s*"            Ein Constraint fängt immer mit einem Komma (,) aus der Vorherigen Zeile und einem Zeilenumbruch (\\n)
-                     *                          gefolgt von einer beliebigen Anzahl Leerzeichen (\\s*) an.
-                     * 2. "CONSTRAINT "         Dann kommt das Schlüsselwort CONSTRAINT mit einem Leerzeichen dahinter
+                     *                          gefolgt von einer beliebigen Anzahl Leerzeichen (\\s*) an. (Ende Zeile 6 bis Anfang Zeile 7)
+                     * 2. "CONSTRAINT "         Dann kommt das Schlüsselwort CONSTRAINT mit einem Leerzeichen dahinter (Anfang Zeile 7)
                      * 3. "`([^`]*)`"           Nach dem Schlüsselwort folgt der Name des Constraint, welches in Accent Grave (`) eingeschlossen ist.
-                     *                          Der Name wird durch "[^`]" lies - NICHT Accent Grave, "*" lies - beliebig oft erfasst.
-                     *                          Da der Ausdruck in runden Klammern gefasst ist wird das erfasste als erste Gruppe gespeichert. 
-                     * 4. " FOREIGN KEY "       Nun kommt wieder eine normale Zeichenfolge
+                     *                          Der Name wird durch "[^`]" lies - NICHT Accent Grave, "*" lies - beliebig oft erfasst. 
+                     *                          Da der Ausdruck in runden Klammern gefasst ist wird das erfasste als erste Gruppe gespeichert. (Zeile 7)
+                     * 4. " FOREIGN KEY "       Nun kommt wieder eine normale Zeichenfolge (Zeile 7)
                      * 5. \\(`([^`]*)`\\)       Der Name des Fremdschlüssels. Da hier die runde Klammer nicht als RegEx-Erfassungsgruppe dient, sondern
                      *                          einfach als das Zeichen runde Klammer muss diese mit "\\" escaped werden.
-                     *                          Ansonsten gilt das gleiche wie bei 3.
-                     * 6. " REFERENCES "        Wieder eine normale Zeichenfolge
-                     * 7. "`([^`]*)`"           Der Name der referenzierten Tabelle (siehe 3.)
-                     * 8. " \\(`([^`]*)`\\) "   Der Name des Primärschlüssel in der Referenzierten Tabelle wie bei 5.
+                     *                          Ansonsten gilt das gleiche wie bei 3. (Zeile 7)
+                     * 6. " REFERENCES "        Wieder eine normale Zeichenfolge (Zeile 7)
+                     * 7. "`([^`]*)`"           Der Name der referenzierten Tabelle (siehe 3.) (Zeile 7)
+                     * 8. " \\(`([^`]*)`\\) "   Der Name des Primärschlüssel in der Referenzierten Tabelle wie bei 5. (Zeile 7)
                      * 9. "([^,\\n]*)"          [^,\n] lies - nicht Komma und nicht Zeilenumbruch beliebig oft. Dadurch werden alle restlichen Zeichen
-                     *                          in der Zeile erfasst. 
+                     *                          in der Zeile erfasst. Es muss auf Komma und Zeilenumbruch geprüft werden. Vergleiche Zeilenende 7 und 8
                      */
                     Regex ausdruck = new Regex(",\\n\\s*CONSTRAINT `([^`]*)` FOREIGN KEY \\(`([^`]*)`\\) REFERENCES `([^`]*)` \\(`([^`]*)`\\)([^,\\n]*)", RegexOptions.Multiline);
                     String setNames = "/*!40101 SET NAMES utf8 */;\n\n";    //Encoding der Tabellen und Spaltennamen
@@ -273,6 +248,7 @@ namespace DatenbankBackupTool
                                                 //auf eine MySQL-Datentyp getroffen wird, der noch nicht bekannt ist.
                                                 default:
                                                     String datatypeName = reader.GetDataTypeName(i);
+                                                    rowValues.Add(reader.GetValue(i).ToString());
                                                     break;
                                             }
                                         }
@@ -308,12 +284,7 @@ namespace DatenbankBackupTool
             return true;
         }
 
-        /// <summary>
-        /// Liest einen SQL-Dump vom angegebenen Dateinamen und führt diesen gegen die
-        /// angegebene Datenbank aus.
-        /// </summary>
-        /// <param name="filename">Kompletter Pfad zur Datei</param>
-        /// <returns>true bei Erfolg, fals beim Auftritt eines Fehlers</returns>
+        /// <inheritdoc/>
         public bool import(string filename)
         {
             //Filestream mit dem übergebenen Dateinamen erstellen
@@ -322,12 +293,7 @@ namespace DatenbankBackupTool
             return import(fileStream);
         }
 
-        /// <summary>
-        /// Liest einen SQL-Dump vom angegebenen Stream und führt diesen gegen die 
-        /// angegebene Datenbank aus
-        /// </summary>
-        /// <param name="stream">Der Stream, welcher den Dump zur Verfügung stellt.</param>
-        /// <returns>true bei Erfolg, fals beim Auftritt eines Fehlers</returns>
+        /// <inheritdoc/>
         public bool import(System.IO.Stream stream)
         {
             //Encoding definieren
@@ -338,7 +304,7 @@ namespace DatenbankBackupTool
                 //MySqlKommando erstellen
                 using (MySqlCommand cmd = new MySqlCommand())
                 {
-                    //Verbindugn öffnen
+                    //Verbindung öffnen
                     conn.Open();
                     string query = string.Empty;
                     //neues MySqlScript erstellen
