@@ -230,13 +230,15 @@ namespace DatenbankBackupTool
                                                 //Und der ganze String wiederum in Anführungszeichen umfasst.
                                                 case "VARCHAR":
                                                 case "CHAR(36)":
-                                                case "DATETIME":
-                                                case "DATE":
                                                     rowValues.Add("\"" + reader.GetString(i).Replace("\"","\\\"") + "\"");
                                                     break;
                                                 //DECIMAL wird als float ausgelesen und dann als String in die Liste der Spaltenwerte geschrieben.
                                                 case "DECIMAL":
                                                     rowValues.Add(reader.GetFloat(i).ToString(System.Globalization.CultureInfo.InvariantCulture));
+                                                    break;
+                                                case "DATETIME":
+                                                case "DATE":
+                                                    rowValues.Add("\"" + reader.GetDateTime(i).ToString("yyyy-MM-dd HH:mm:ss").Replace("\"", "\\\"") + "\"");
                                                     break;
                                                 //BLOBs werden Byte für Byte ausgelesen.
                                                 //Dann werden die Bytes mit ".ToHex()" in eine Hexadezimale Darstellung
@@ -251,7 +253,7 @@ namespace DatenbankBackupTool
                                                 //auf eine MySQL-Datentyp getroffen wird, der noch nicht bekannt ist.
                                                 default:
                                                     String datatypeName = reader.GetDataTypeName(i);
-                                                    throw new ArgumentOutOfRangeException("Mysql Datentyp '" + datatypeName + "' ist diesem Tool nicht bekannt");
+                                                    throw new ArgumentOutOfRangeException("MySql Datentyp '" + datatypeName + "' ist diesem Tool nicht bekannt");
                                             }
                                         }
                                     }
