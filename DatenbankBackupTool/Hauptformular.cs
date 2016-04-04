@@ -132,6 +132,7 @@ namespace DatenbankBackupTool
                 try
                 {
                     dumper.import(filename);
+                    MessageBox.Show("Backup wurde wieder eingespiet");
                 }
                 catch (Exception ex)
                 {
